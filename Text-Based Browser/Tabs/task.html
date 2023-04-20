@@ -1,0 +1,55 @@
+<h5 id="description" style="text-align: center;">Description</h5>
+<p>Let's allow our browser to store web pages in a file and show their content if a user types a shortened request (for example, <code class="java">wikipedia</code> instead of <a href="https://www.wikipedia.org/" rel="noopener noreferrer nofollow" target="_blank">wikipedia.org</a>). To do that, you need to store each page as a separate file. Your program should take one command-line argument containing a directory and put files with web pages' content.</p>
+<h5 id="objectives" style="text-align: center;">Objectives</h5>
+<p>In this stage, your program should: </p>
+<ol>
+<li>Accept a command-line argument with a directory where you save the tabs. For example, if the argument is <code class="java">dir</code>, you need to create a folder with the name <code class="java">dir</code> and save web pages' content that users input in this folder. Note that if the folder already exists, <code class="java">FileExistsError</code> will be raised. Hence, before creating the directory, check whether it's already been made. For this, you can use the <code class="java">os.access()</code> function. If the folder exists, you don't create it again.</li>
+<li>Check whether users entered a valid URL. It must contain at least one dot, for example, <code class="java">bloomberg.com</code>. If the URL is incorrect, the browser should output an error message <code class="java">Invalid URL</code> and wait for another URL.</li>
+<li>For now, your program can only work with two web pages: <code class="java">bloomberg.com</code> and <code class="java">nytimes.com</code>. If the URL isn't either of these two, your program should output an error message. </li>
+<li>Print the web page's content if the URL is valid and save it to a file in the directory above. You have two predefined variables with the content of the web pages that you should keep: <code class="java">bloomberg_com</code> and <code class="java">nytimes_com</code>. When writing files, you don't need to change your current working directory; point the path to it from your current one. The file's name should correspond to the name of the web page. Remove the first dot from the page name and everything after it. For example,  a file for the page <code class="java">bloomberg.com</code> should be named <code class="java">bloomberg</code>. Please, don't add the  <em>.txt</em> (or any other) extension to the file names.</li>
+<li>Read the next input. If this input is the string <code class="java">exit</code>, the program should stop running. If not, check if the string has the same name as any file with a web page you have already saved. If it does, print the content of this file. If it doesn't, check if the string is a new valid URL. If it is, repeat step 4. If it isn't, output an error message. Make sure that you use the correct file path when reading the file. You need to access the file through the folder you created above, for example, <em>dir/bloomberg</em>.</li>
+</ol>
+<h5 id="example" style="text-align: center;">Example</h5>
+<p>The greater-than symbol followed by a space (<code class="java">&gt; </code>) represents the user input. Note that it's not part of the input.</p>
+<pre><code class="language-no-highlight">&gt; python browser.py dir-for-files
+&gt; bloomberg.com
+The Space Race: From Apollo 11 to Elon Musk
+
+It's 50 years since the world was gripped by historic images
+of Apollo 11, and Neil Armstrong -- the first man to walk
+on the moon. It was the height of the Cold War, and the charts
+were filled with David Bowie's Space Oddity, and Creedence's
+Bad Moon Rising. The world is a very different place than
+it was 5 decades ago. But how has the space race changed since
+the summer of '69? (Source: Bloomberg)
+
+
+Twitter CEO Jack Dorsey Gives Talk at Apple Headquarters
+
+Twitter and Square Chief Executive Officer Jack Dorsey
+addressed Apple Inc. employees at the iPhone maker’s headquarters
+Tuesday, a signal of the strong ties between the Silicon Valley giants.
+
+&gt; bloomberg
+The Space Race: From Apollo 11 to Elon Musk
+
+It's 50 years since the world was gripped by historic images
+of Apollo 11, and Neil Armstrong -- the first man to walk
+on the moon. It was the height of the Cold War, and the charts
+were filled with David Bowie's Space Oddity, and Creedence's
+Bad Moon Rising. The world is a very different place than
+it was 5 decades ago. But how has the space race changed since
+the summer of '69? (Source: Bloomberg)
+
+
+Twitter CEO Jack Dorsey Gives Talk at Apple Headquarters
+
+Twitter and Square Chief Executive Officer Jack Dorsey
+addressed Apple Inc. employees at the iPhone maker’s headquarters
+Tuesday, a signal of the strong ties between the Silicon Valley giants.
+
+&gt; nytimes
+Error: Incorrect URL
+
+&gt; exit
+</code></pre>
