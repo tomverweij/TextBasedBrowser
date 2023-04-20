@@ -167,6 +167,15 @@ files:
     if __name__ == '__main__':
         TextBasedBrowserTest().run_tests()
   learner_created: false
+- name: dir/bloomberg
+  visible: true
+  learner_created: true
+- name: dir/nytimes
+  visible: true
+  learner_created: true
 feedback_link: https://hyperskill.org/learn/step/7211#comment
-status: Unchecked
+status: Solved
+feedback:
+  message: Congratulations!
+  time: "Thu, 20 Apr 2023 21:32:59 UTC"
 record: -1

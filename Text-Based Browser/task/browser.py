@@ -1,3 +1,6 @@
+import argparse
+import os
+
 nytimes_com = '''
 This New Liquid Is Magnetic, and Mesmerizing
 
@@ -33,13 +36,46 @@ Twitter and Square Chief Executive Officer Jack Dorsey
  Tuesday, a signal of the strong ties between the Silicon Valley giants.
 '''
 
-# write your code here
-while True:
-    show_text = input()
-    if show_text == 'bloomberg.com':
-        print(bloomberg_com)
-        break
-    elif show_text == 'nytimes.com':
-        print(nytimes_com)
-        break
+supported_urls = {'bloomberg.com': bloomberg_com, 'nytimes.com': nytimes_com}
 
+
+class Browser:
+    """Surf the internet"""
+    cache_dir = ''
+    cached_pages = []
+
+    def __init__(self):
+        parser = argparse.ArgumentParser()
+        parser.add_argument("dir")
+        args = parser.parse_args()
+        self.cache_dir = args.dir
+
+        if not os.access(self.cache_dir, os.F_OK):
+            os.mkdir(self.cache_dir)
+
+        while True:
+            url = input()
+            if url == 'exit':
+                break
+            elif not self.valid_url(url) or supported_urls.get(url) is None:
+                print('Invalid URL')
+            else:
+                self.handle_page(url)
+
+    def valid_url(self, url):
+        return True if '.' in url else False
+
+    def handle_page(self, url):
+        page = url.split('.')[0]
+
+        with open(self.cache_dir + '/' + page, 'w+') as file:
+            if page not in self.cached_pages:
+                self.cached_pages.append(page)
+                content = supported_urls.get(url)
+                file.write(content)
+                print(content)
+            else:
+                print(file.read())
+
+
+run_a_browser = Browser()
