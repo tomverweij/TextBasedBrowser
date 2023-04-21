@@ -1,5 +1,6 @@
 import argparse
 import os
+from collections import deque
 
 nytimes_com = '''
 This New Liquid Is Magnetic, and Mesmerizing
@@ -43,6 +44,8 @@ class Browser:
     """Surf the internet"""
     cache_dir = ''
     cached_pages = []
+    # add a page history stack
+    backstack = deque()
 
     def __init__(self):
         parser = argparse.ArgumentParser()
@@ -57,6 +60,8 @@ class Browser:
             url = input()
             if url == 'exit':
                 break
+            elif url == 'back':
+                self.handle_back()
             elif not self.valid_url(url) or supported_urls.get(url) is None:
                 print('Invalid URL')
             else:
@@ -76,6 +81,24 @@ class Browser:
                 print(content)
             else:
                 print(file.read())
+        # also append to history stack
+        self.backstack.append(page)
+
+    def handle_back(self):
+        # check if there is any history
+        # which means there should be at least 2 in the stack, because we choose
+        # to append each handled page to history
+        if len(self.backstack) < 2:
+            return
+        else:
+            # pop current page
+            self.backstack.pop()
+
+        # ... pick the last page from the stack and open it from cache
+        with open(self.cache_dir + '/' + self.backstack.pop()) as file:
+            print(file.read())
+
+
 
 
 run_a_browser = Browser()

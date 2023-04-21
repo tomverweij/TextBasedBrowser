@@ -1,0 +1,15 @@
+type: code
+files:
+- name: main.py
+  visible: true
+  learner_created: false
+- name: input.txt
+  visible: true
+  learner_created: true
+feedback_link: https://hyperskill.org/learn/step/8920#comment
+status: Solved
+feedback:
+  message: <html>Correct solution</html>
+  time: "Fri, 21 Apr 2023 19:46:10 UTC"
+record: -1
+submission_language: python3
