@@ -191,6 +191,32 @@ files:
     if __name__ == '__main__':
         TextBasedBrowserTest().run_tests()
   learner_created: false
+- name: input.txt
+  visible: true
+  text: |+
+    bloomberg.com
+    xx.x
+    nytimes.com
+    back
+    exit
+
+
+  learner_created: true
+- name: dir/docs_python_org
+  visible: true
+  learner_created: true
+- name: dir/bloomberg_com
+  visible: true
+  learner_created: true
+- name: dir/docs
+  visible: true
+  learner_created: true
+- name: dir/nos
+  visible: true
+  learner_created: true
 feedback_link: https://hyperskill.org/learn/step/7213#comment
-status: Unchecked
+status: Solved
+feedback:
+  message: Congratulations!
+  time: "Sat, 22 Apr 2023 21:12:53 UTC"
 record: -1
