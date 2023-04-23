@@ -4,6 +4,7 @@ import shutil
 import requests
 from collections import deque
 from bs4 import BeautifulSoup
+from colorama import Fore, Style
 
 dir_name = sys.argv[1]
 
@@ -18,8 +19,16 @@ def get_site_content(url):
     try:
         r = requests.get(url)
         r.encoding = 'UTF-8'
-        soup = BeautifulSoup(r.text, 'html.parser')
-        return '\n'.join([text for text in soup.stripped_strings])
+        soup = BeautifulSoup(r.text, 'html.parser').body.descendants
+        tags = ['p', 'a', 'ul', 'ol', 'li', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6']
+        page = ""
+        for descendant in soup:
+            if descendant.name in tags:
+                if descendant.name == 'a':
+                    page += Fore.BLUE + descendant.get_text().strip()
+                else:
+                    page += Style.RESET_ALL + descendant.get_text().strip()
+        return page
 
     except requests.exceptions.ConnectionError:
         print("Invalid URL")

@@ -1,10 +1,11 @@
 from hstest.stage_test import *
 import requests
+from bs4 import BeautifulSoup
 import os
 import shutil
-from bs4 import BeautifulSoup
+from colorama import Fore
 import sys
-
+import re
 if sys.platform.startswith("win"):
     import _locale
     # pylint: disable=protected-access
@@ -47,61 +48,50 @@ class TextBasedBrowserTest(StageTest):
             )
         ]
 
-    def check_output(self, output_text: str, ideal_text: list, page_code: list, source: str):
+    def check_output(self, output_text, links, not_links, source):
         """
         :param output_text: the text from the user's file or from the console output
-        :param ideal_text: the text from the web page (without HTML tags)
-        :param page_code: the text from the web page with HTML tags
+        :param links: list with links highlighted with blue
+        :param not_links: list with text that was taken from other tags than <a>
         :param source: the name of the file from which the user's text is taken or "console output" line
-        :return: raises WrongAnswer if an HTML tag is found in the output_text
-        or if a word from the ideal_text is not found in the output_text
+        :return: raises WrongAnswer if a highlighted link is not found in the output_text,
+        or if a non-link text is not found in the output_text,
+        or if a non-link text is highlighted with blue
         """
-        for line in page_code:
-            if line not in ideal_text and line in output_text:
-                raise WrongAnswer(f"The following token is present in the {source} even though it's not expected "
-                                  f"to be there:\n\'{line}\'\n"
-                                  f"Make sure you get rid of all HTML tags.")
-        output_text = ''.join(char for char in output_text if char.isalnum())
-        for line in ideal_text:
-            line_without_spaces = ''.join(char for char in line if char.isalnum())
-            if line_without_spaces.strip() not in output_text:
-                raise WrongAnswer(f"The following token is missing from the {source}:\n"
-                                  f"\'{line}\'\n"
-                                  f"Make sure you get all the text from the web page.")
+        output_text = re.sub(r'\s', ' ', output_text)
+        for i, link in enumerate(links):
+            link = re.sub(r'\s', ' ', link)
+            links[i] = link
+            if not link:
+                continue
+            if link not in output_text:
+                raise WrongAnswer(f"In {source} the following link is missing: \n"
+                                  f"{link}")
+            if Fore.BLUE + link not in output_text:
+                raise WrongAnswer(f"In {source} the following link is not highlighted with blue: \n"
+                                  f"{link}")
 
-    def _check_files(self, path_for_tabs: str, ideal_page: list, page_code: list, attach: str):
-        """
-        Helper which checks that browser saves visited url in files and
-        provides access to them.
+        for line in not_links:
+            line = re.sub(r'\s', ' ', line)
+            highlighted_version = Fore.BLUE + line
+            # the following conditions is put here in case some text from non-link tags coincides with some link's text
+            if highlighted_version in links:
+                continue
 
-        :param path_for_tabs: directory which must contain saved tabs
-        :param ideal_page: the text from the web page (without HTML tags)
-        :param page_code: the text from the web page with HTML tags
-        """
+            if line not in output_text:
+                raise WrongAnswer(f"In {source} the following text is not found:\n"
+                                  f"{line}\n"
+                                  f"Make sure you extract all the text from the page.\n"
+                                  f"Also, make sure you don't highlight any parts of this text with blue, \n"
+                                  f"and don't put any escape sequences in it.")
 
-        path, dirs, filenames = next(os.walk(path_for_tabs))
-
-        name = attach.split('.')[0]
-        if name in filenames:
-            print("found file: {}".format(name))
-            with open(os.path.join(path_for_tabs, name), 'r', encoding='utf-8') as tab:
-                try:
-                    content = tab.read()
-                except UnicodeDecodeError:
-                    raise WrongAnswer('An error occurred while reading your saved tab. '
-                                      'Perhaps you used the wrong encoding?')
-                self.check_output(content, ideal_page, page_code, "file " + name)
-
-        else:
-            raise WrongAnswer(f"Couldn't find file with the name {name}.\n"
-                              f"Make sure you saved the tab and named it correctly.")
+            if highlighted_version in output_text:
+                raise WrongAnswer(f"In {source} the following text is highlighted with blue:\n"
+                                  f"{highlighted_version}\n"
+                                  f"Make sure you highlight only the links.")
 
     @staticmethod
-    def get_page_and_code(url):
-        """
-        :param url: url link that the program is requested to open
-        :return: list with strings of clean text and list of strings with text with HTML tags
-        """
+    def get_links_and_text(url):
 
         url = f'https://{url}'
         user_agent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) " \
@@ -112,23 +102,23 @@ class TextBasedBrowserTest(StageTest):
             raise WrongAnswer(f"An error occurred while tests tried to connect to the page {url}.\n"
                               f"Please try again a bit later.")
         soup = BeautifulSoup(page.content, 'html.parser')
-        tags = soup.find_all(['p', 'a', 'h1', 'h2', 'ul', 'ol', 'li'])
-        text = []
-        tagged_text = []
-        for tag in tags:
-            tag_text = tag.text.strip()
-            if tag_text:
-                text.append(tag_text)
-            tag = str(tag)
-            if tag.startswith('<'):
-                tagged_text.append(tag)
-        return text, tagged_text
+        links = []
+        links_tags = soup.find_all("a")
+        for tag in links_tags:
+            link_text = str(tag.text.strip())
+            if link_text:
+                links.append(link_text)
+        not_links = []
+        for tag in soup.find_all(["h1", "p"]):
+            tag_text = str(tag.text.strip())
+            if tag not in links_tags and tag_text and "<a" not in str(tag) and tag_text not in links:
+                not_links.append(tag_text)
 
-    def check_correct_url(self, attach_0: str, path_for_tabs: str, reply):
+        return links, not_links
 
-        ideal_text, page_code = TextBasedBrowserTest.get_page_and_code(attach_0)
-        self._check_files(path_for_tabs, ideal_text, page_code, attach_0)
-        self.check_output(reply, ideal_text, page_code, "console output")
+    def check_correct_url(self, attach_0, reply):
+        links, not_links = TextBasedBrowserTest.get_links_and_text(attach_0)
+        self.check_output(reply, links, not_links, "the console output")
 
     def check(self, reply, attach):
 
@@ -155,17 +145,16 @@ class TextBasedBrowserTest(StageTest):
         if isinstance(attach, tuple):
             for element in attach:
                 attach_0 = element
-                self.check_correct_url(attach_0, path_for_tabs, reply)
+                self.check_correct_url(attach_0, reply)
 
         elif isinstance(attach, str):
             attach_0 = attach
-            self.check_correct_url(attach_0, path_for_tabs, reply)
+            self.check_correct_url(attach_0, reply)
 
         try:
             shutil.rmtree(path_for_tabs)
         except PermissionError:
-            return CheckResult.wrong("Impossible to remove the directory for tabs. "
-                                     "Perhaps you haven't closed some file?")
+            return CheckResult.wrong("Impossible to remove the directory for tabs. Perhaps you haven't closed some file?")
 
         return CheckResult.correct()
 
