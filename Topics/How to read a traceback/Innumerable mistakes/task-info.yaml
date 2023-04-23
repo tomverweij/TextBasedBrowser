@@ -1,0 +1,19 @@
+type: choice
+is_multiple_choice: false
+options:
+- text: "Only if the exception occurs while handling another exception, so that they\
+    \ are 'connected'."
+- text: Never. It will show the next mistake only after correcting the previous one.
+- text: Always. It will show them from the older to the more recent ones.
+- text: Only if all the errors occur in the same module.
+files:
+- name: main.py
+  visible: true
+  text: |+
+    #  You can experiment here, it won’t be checked
+
+  learner_created: false
+feedback_link: https://hyperskill.org/learn/step/14994#comment
+status: Solved
+record: -1
+local_check: false

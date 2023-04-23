@@ -202,6 +202,9 @@ files:
     if __name__ == '__main__':
         TextBasedBrowserTest().run_tests()
   learner_created: false
+- name: input.txt
+  visible: true
+  learner_created: true
 - name: dir/bloomberg
   visible: true
   text: "\nThe Space Race: From Apollo 11 to Elon Musk\n\nIt's 50 years since the\
@@ -214,9 +217,6 @@ files:
     \ Chief Executive Officer Jack Dorsey \n addressed Apple Inc. employees at the\
     \ iPhone maker’s headquarters\n Tuesday, a signal of the strong ties between the\
     \ Silicon Valley giants.\n"
-  learner_created: true
-- name: input.txt
-  visible: true
   learner_created: true
 - name: dir/nytimes
   visible: true

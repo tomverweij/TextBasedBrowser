@@ -1,76 +1,46 @@
-import argparse
+import sys
 import os
-from collections import deque
 import requests
+from collections import deque
 
-class Browser:
-    """Surf the internet"""
-    cache_dir = ''
-    cached_pages = []
-    # add a page history stack
-    backstack = deque()
+dir_name = sys.argv[1]
 
-    def __init__(self):
-        parser = argparse.ArgumentParser()
-        parser.add_argument("dir")
-        args = parser.parse_args()
-        self.cache_dir = args.dir
+if not os.path.exists(dir_name):
+    os.mkdir(dir_name)
 
-        if not os.access(self.cache_dir, os.F_OK):
-            os.mkdir(self.cache_dir)
+history = deque()
 
-        while True:
-            url = input()
-            if url == 'exit':
-                break
-            elif url == 'back':
-                self.handle_back()
-            elif not self.valid_url(url):
-                print('Invalid URL')
-            else:
-                self.handle_page(url)
 
-    def valid_url(self, url):
-        return True if '.' in url else False
+def get_site_content(url):
+    return requests.get(url).text
 
-    def handle_page(self, url):
-        try:
-            if not 'https://' in url:
-                https_url = 'https://' + url
-            else:
-                https_url = url
-                url = url.strip('https://')
 
-            r = requests.get(https_url)
-        except:
-            print('Houston... we have a problem')
-            return
+def save_site_content(data, path):
+    history.append(path)
+    with open(os.path.join(dir_name, path), "w") as f:
+        f.write(data)
 
-        page = url.split('.')[0]
 
-        with open(self.cache_dir + '/' + page, 'w+') as file:
-            if page not in self.cached_pages:
-                self.cached_pages.append(page)
-                content = r.text
-                file.write(content)
-                print(content)
-            else:
-                print(file.read())
-        # also append to history stack
-        self.backstack.append(page)
+def go_site(site):
+    address = site if site.startswith("https://") else f"https://{site}"
+    site_content = get_site_content(address)
+    save_site_content(site_content, site.removeprefix('https://').split('.')[0])
+    print(site_content)
 
-    def handle_back(self):
-        # check if there is any history
-        # which means there should be at least 2 in the stack, because we choose
-        # to append each handled page to history
-        if len(self.backstack) < 2:
-            return
-        else:
-            # pop current page
-            self.backstack.pop()
 
-        # ... pick the last page from the stack and open it from cache
-        with open(self.cache_dir + '/' + self.backstack.pop()) as file:
-            print(file.read())
+def go_back():
+    history.pop()
+    with open(os.path.join(dir_name, history.pop()), 'r') as f:
+        print(f.read())
 
-run_a_browser = Browser()
+
+while True:
+    command = input()
+    if command == "exit":
+        break
+    if command == "back":
+        go_back()
+    elif "." in command:
+        go_site(command)
+    else:
+        print("Error: Incorrect URL")

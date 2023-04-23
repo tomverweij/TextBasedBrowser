@@ -1,0 +1,11 @@
+<h2>No response</h2>
+<p></p>
+<p></p><div class="alert alert-warning">This task mentions the <code class="java">requests</code> library that you may not be familiar with yet. Do not worry! All the necessary information for solving the problem is in the description.</div><p></p>
+<p>Let's consider a fairly common problem in a programmer's life when working with the <code class="java">requests</code> library. The <code class="java">get_response()</code> function defined below opens the specified URL and prints the HTTP code status. If <code class="java">.status_code</code> returned 200, then the request was successful, and if the code is different, then some problems appeared during handling the request.</p>
+<p>However, it turned out that our program contains a mistake and for some reason does not handle the case if the <code class="java">https://</code> part of the URL is written incorrectly. So, the user sees a long traceback, the first part of which ends with an expression containing the error type:</p>
+<pre><code class="language-no-highlight">requests.exceptions.InvalidSchema: No connection adapters were found for..</code></pre>
+<p>Correct the code so that instead of the traceback due to an incorrect URL, the user will receive the message "<code class="java">No response</code>".</p>
+<p><b>Tip:</b> Pay attention to the name of the error in the <code class="java">except</code> block and in the traceback!</p><br><b>Sample Input:</b><br><pre><code class="language-no-highlight">https://google.com</code></pre><br><b>Sample Output:</b><br><pre><code class="language-no-highlight">200</code></pre><br><br><b>Sample Input:</b><br><pre><code class="language-no-highlight">htpps://google.com</code></pre><br><b>Sample Output:</b><br><pre><code class="language-no-highlight">No response</code></pre><br><br><br><font color="gray">Memory limit: 256 MB</font><br><font color="gray">Time limit: 15 seconds</font><br><br>
+<b>Caution</b><br><br>
+You may see errors in your code or execution results due to missing context. Don’t worry about it, just write the solution and press Check.
+<br><br>
