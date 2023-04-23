@@ -219,153 +219,18 @@ files:
 - name: dir/nos.nl
   visible: true
   learner_created: true
+- name: dir/nos
+  visible: true
+  learner_created: true
+- name: dir/bloomberg
+  visible: true
+  learner_created: true
+- name: tb_tabs/docs
+  visible: true
+  learner_created: true
 feedback_link: https://hyperskill.org/learn/step/7214#comment
-status: Failed
+status: Solved
 feedback:
-  message: "Wrong answer in test #1\n\nThe following token is present in the file\
-    \ docs even though it's not expected to be there:\n'<p><a href=\"download.html\"\
-    >Download these documents</a></p>'\nMake sure you get rid of all HTML tags.\n\n\
-    Please find below the output of your program during this failed test.\nNote that\
-    \ the '>' character indicates the beginning of the input line.\n\n---\n\nArguments:\
-    \ ./tb_tabs\n\n[last 250 lines of output are shown, 87 skipped]\n  <li><a href=\"\
-    https://docs.python.org/3.7/\">Python 3.7 (security-fixes)</a></li>\n  \n  <li><a\
-    \ href=\"https://docs.python.org/3.6/\">Python 3.6 (EOL)</a></li>\n  \n  <li><a\
-    \ href=\"https://docs.python.org/3.5/\">Python 3.5 (EOL)</a></li>\n  \n  <li><a\
-    \ href=\"https://docs.python.org/2.7/\">Python 2.7 (EOL)</a></li>\n  \n  <li><a\
-    \ href=\"https://www.python.org/doc/versions/\">All versions</a></li>\n</ul>\n\
-    \n\n<h3>Other resources</h3>\n<ul>\n  \n  <li><a href=\"https://www.python.org/dev/peps/\"\
-    >PEP Index</a></li>\n  <li><a href=\"https://wiki.python.org/moin/BeginnersGuide\"\
-    >Beginner's Guide</a></li>\n  <li><a href=\"https://wiki.python.org/moin/PythonBooks\"\
-    >Book List</a></li>\n  <li><a href=\"https://www.python.org/doc/av/\">Audio/Visual\
-    \ Talks</a></li>\n  <li><a href=\"https://devguide.python.org/\">Python Developerâ\
-    \x80\x99s Guide</a></li>\n</ul>\n        </nav>\n    </div>\n</div>\n\n  \n  \
-    \  <div class=\"related\" role=\"navigation\" aria-label=\"related navigation\"\
-    >\n      <h3>Navigation</h3>\n      <ul>\n        <li class=\"right\" style=\"\
-    margin-right: 10px\">\n          <a href=\"genindex.html\" title=\"General Index\"\
-    \n             accesskey=\"I\">index</a></li>\n        <li class=\"right\" >\n\
-    \          <a href=\"py-modindex.html\" title=\"Python Module Index\"\n      \
-    \       >modules</a> |</li>\n\n          <li><img src=\"_static/py.svg\" alt=\"\
-    python logo\" style=\"vertical-align: middle; margin-top: -1px\"/></li>\n    \
-    \      <li><a href=\"https://www.python.org/\">Python</a> &#187;</li>\n      \
-    \    <li class=\"switchers\">\n            <div class=\"language_switcher_placeholder\"\
-    ></div>\n            <div class=\"version_switcher_placeholder\"></div>\n    \
-    \      </li>\n          <li>\n              \n          </li>\n    <li id=\"cpython-language-and-version\"\
-    >\n      <a href=\"#\">3.11.3 Documentation</a> &#187;\n    </li>\n\n        <li\
-    \ class=\"nav-item nav-item-this\"><a href=\"\"></a></li>\n                <li\
-    \ class=\"right\">\n                    \n\n    <div class=\"inline-search\" role=\"\
-    search\">\n        <form class=\"inline-search\" action=\"search.html\" method=\"\
-    get\">\n          <input placeholder=\"Quick search\" aria-label=\"Quick search\"\
-    \ type=\"text\" name=\"q\" />\n          <input type=\"submit\" value=\"Go\" />\n\
-    \          <input type=\"hidden\" name=\"check_keywords\" value=\"yes\" />\n \
-    \         <input type=\"hidden\" name=\"area\" value=\"default\" />\n        </form>\n\
-    \    </div>\n                     |\n                </li>\n            \n   \
-    \   </ul>\n    </div>    \n\n    <div class=\"document\">\n      <div class=\"\
-    documentwrapper\">\n        <div class=\"bodywrapper\">\n          <div class=\"\
-    body\" role=\"main\">\n            \n  <h1>Python 3.11.3 documentation</h1>\n\
-    \  <p>\n  Welcome! This is the official documentation for Python 3.11.3.\n  </p>\n\
-    \  <p><strong>Parts of the documentation:</strong></p>\n  <table class=\"contentstable\"\
-    \ align=\"center\"><tr>\n    <td width=\"50%\">\n      <p class=\"biglink\"><a\
-    \ class=\"biglink\" href=\"whatsnew/3.11.html\">What's new in Python 3.11?</a><br/>\n\
-    \        <span class=\"linkdescr\"> or <a href=\"whatsnew/index.html\">all \"\
-    What's new\" documents</a> since 2.0</span></p>\n      <p class=\"biglink\"><a\
-    \ class=\"biglink\" href=\"tutorial/index.html\">Tutorial</a><br/>\n         <span\
-    \ class=\"linkdescr\">start here</span></p>\n      <p class=\"biglink\"><a class=\"\
-    biglink\" href=\"library/index.html\">Library Reference</a><br/>\n         <span\
-    \ class=\"linkdescr\">keep this under your pillow</span></p>\n      <p class=\"\
-    biglink\"><a class=\"biglink\" href=\"reference/index.html\">Language Reference</a><br/>\n\
-    \         <span class=\"linkdescr\">describes syntax and language elements</span></p>\n\
-    \      <p class=\"biglink\"><a class=\"biglink\" href=\"using/index.html\">Python\
-    \ Setup and Usage</a><br/>\n         <span class=\"linkdescr\">how to use Python\
-    \ on different platforms</span></p>\n      <p class=\"biglink\"><a class=\"biglink\"\
-    \ href=\"howto/index.html\">Python HOWTOs</a><br/>\n         <span class=\"linkdescr\"\
-    >in-depth documents on specific topics</span></p>\n    </td><td width=\"50%\"\
-    >\n      <p class=\"biglink\"><a class=\"biglink\" href=\"installing/index.html\"\
-    >Installing Python Modules</a><br/>\n         <span class=\"linkdescr\">installing\
-    \ from the Python Package Index &amp; other sources</span></p>\n      <p class=\"\
-    biglink\"><a class=\"biglink\" href=\"distributing/index.html\">Distributing Python\
-    \ Modules</a><br/>\n         <span class=\"linkdescr\">publishing modules for\
-    \ installation by others</span></p>\n      <p class=\"biglink\"><a class=\"biglink\"\
-    \ href=\"extending/index.html\">Extending and Embedding</a><br/>\n         <span\
-    \ class=\"linkdescr\">tutorial for C/C++ programmers</span></p>\n      <p class=\"\
-    biglink\"><a class=\"biglink\" href=\"c-api/index.html\">Python/C API</a><br/>\n\
-    \         <span class=\"linkdescr\">reference for C/C++ programmers</span></p>\n\
-    \      <p class=\"biglink\"><a class=\"biglink\" href=\"faq/index.html\">FAQs</a><br/>\n\
-    \         <span class=\"linkdescr\">frequently asked questions (with answers!)</span></p>\n\
-    \    </td></tr>\n  </table>\n\n  <p><strong>Indices and tables:</strong></p>\n\
-    \  <table class=\"contentstable\" align=\"center\"><tr>\n    <td width=\"50%\"\
-    >\n      <p class=\"biglink\"><a class=\"biglink\" href=\"py-modindex.html\">Global\
-    \ Module Index</a><br/>\n         <span class=\"linkdescr\">quick access to all\
-    \ modules</span></p>\n      <p class=\"biglink\"><a class=\"biglink\" href=\"\
-    genindex.html\">General Index</a><br/>\n         <span class=\"linkdescr\">all\
-    \ functions, classes, terms</span></p>\n      <p class=\"biglink\"><a class=\"\
-    biglink\" href=\"glossary.html\">Glossary</a><br/>\n         <span class=\"linkdescr\"\
-    >the most important terms explained</span></p>\n    </td><td width=\"50%\">\n\
-    \      <p class=\"biglink\"><a class=\"biglink\" href=\"search.html\">Search page</a><br/>\n\
-    \         <span class=\"linkdescr\">search this documentation</span></p>\n   \
-    \   <p class=\"biglink\"><a class=\"biglink\" href=\"contents.html\">Complete\
-    \ Table of Contents</a><br/>\n         <span class=\"linkdescr\">lists all sections\
-    \ and subsections</span></p>\n    </td></tr>\n  </table>\n\n  <p><strong>Meta\
-    \ information:</strong></p>\n  <table class=\"contentstable\" align=\"center\"\
-    ><tr>\n    <td width=\"50%\">\n      <p class=\"biglink\"><a class=\"biglink\"\
-    \ href=\"bugs.html\">Reporting bugs</a></p>\n      <p class=\"biglink\"><a class=\"\
-    biglink\" href=\"https://devguide.python.org/docquality/#helping-with-documentation\"\
-    >Contributing to Docs</a></p>\n      <p class=\"biglink\"><a class=\"biglink\"\
-    \ href=\"about.html\">About the documentation</a></p>\n    </td><td width=\"50%\"\
-    >\n      <p class=\"biglink\"><a class=\"biglink\" href=\"license.html\">History\
-    \ and License of Python</a></p>\n      <p class=\"biglink\"><a class=\"biglink\"\
-    \ href=\"copyright.html\">Copyright</a></p>\n    </td></tr>\n  </table>\n\n  \
-    \          <div class=\"clearer\"></div>\n          </div>\n        </div>\n \
-    \     </div>\n      <div class=\"sphinxsidebar\" role=\"navigation\" aria-label=\"\
-    main navigation\">\n        <div class=\"sphinxsidebarwrapper\">\n\n\n<h3>Download</h3>\n\
-    <p><a href=\"download.html\">Download these documents</a></p>\n\n\n<h3>Docs by\
-    \ version</h3>\n<ul>\n  \n  <li><a href=\"https://docs.python.org/3.12/\">Python\
-    \ 3.12 (in development)</a></li>\n  \n  <li><a href=\"https://docs.python.org/3.11/\"\
-    >Python 3.11 (stable)</a></li>\n  \n  <li><a href=\"https://docs.python.org/3.10/\"\
-    >Python 3.10 (stable)</a></li>\n  \n  <li><a href=\"https://docs.python.org/3.9/\"\
-    >Python 3.9 (security-fixes)</a></li>\n  \n  <li><a href=\"https://docs.python.org/3.8/\"\
-    >Python 3.8 (security-fixes)</a></li>\n  \n  <li><a href=\"https://docs.python.org/3.7/\"\
-    >Python 3.7 (security-fixes)</a></li>\n  \n  <li><a href=\"https://docs.python.org/3.6/\"\
-    >Python 3.6 (EOL)</a></li>\n  \n  <li><a href=\"https://docs.python.org/3.5/\"\
-    >Python 3.5 (EOL)</a></li>\n  \n  <li><a href=\"https://docs.python.org/2.7/\"\
-    >Python 2.7 (EOL)</a></li>\n  \n  <li><a href=\"https://www.python.org/doc/versions/\"\
-    >All versions</a></li>\n</ul>\n\n\n<h3>Other resources</h3>\n<ul>\n  \n  <li><a\
-    \ href=\"https://www.python.org/dev/peps/\">PEP Index</a></li>\n  <li><a href=\"\
-    https://wiki.python.org/moin/BeginnersGuide\">Beginner's Guide</a></li>\n  <li><a\
-    \ href=\"https://wiki.python.org/moin/PythonBooks\">Book List</a></li>\n  <li><a\
-    \ href=\"https://www.python.org/doc/av/\">Audio/Visual Talks</a></li>\n  <li><a\
-    \ href=\"https://devguide.python.org/\">Python Developerâ\x80\x99s Guide</a></li>\n\
-    </ul>\n        </div>\n      </div>\n      <div class=\"clearer\"></div>\n   \
-    \ </div>  \n    <div class=\"related\" role=\"navigation\" aria-label=\"related\
-    \ navigation\">\n      <h3>Navigation</h3>\n      <ul>\n        <li class=\"right\"\
-    \ style=\"margin-right: 10px\">\n          <a href=\"genindex.html\" title=\"\
-    General Index\"\n             >index</a></li>\n        <li class=\"right\" >\n\
-    \          <a href=\"py-modindex.html\" title=\"Python Module Index\"\n      \
-    \       >modules</a> |</li>\n\n          <li><img src=\"_static/py.svg\" alt=\"\
-    python logo\" style=\"vertical-align: middle; margin-top: -1px\"/></li>\n    \
-    \      <li><a href=\"https://www.python.org/\">Python</a> &#187;</li>\n      \
-    \    <li class=\"switchers\">\n            <div class=\"language_switcher_placeholder\"\
-    ></div>\n            <div class=\"version_switcher_placeholder\"></div>\n    \
-    \      </li>\n          <li>\n              \n          </li>\n    <li id=\"cpython-language-and-version\"\
-    >\n      <a href=\"#\">3.11.3 Documentation</a> &#187;\n    </li>\n\n        <li\
-    \ class=\"nav-item nav-item-this\"><a href=\"\"></a></li>\n                <li\
-    \ class=\"right\">\n                    \n\n    <div class=\"inline-search\" role=\"\
-    search\">\n        <form class=\"inline-search\" action=\"search.html\" method=\"\
-    get\">\n          <input placeholder=\"Quick search\" aria-label=\"Quick search\"\
-    \ type=\"text\" name=\"q\" />\n          <input type=\"submit\" value=\"Go\" />\n\
-    \          <input type=\"hidden\" name=\"check_keywords\" value=\"yes\" />\n \
-    \         <input type=\"hidden\" name=\"area\" value=\"default\" />\n        </form>\n\
-    \    </div>\n                     |\n                </li>\n            \n   \
-    \   </ul>\n    </div>  \n    <div class=\"footer\">\n    &copy; <a href=\"copyright.html\"\
-    >Copyright</a> 2001-2023, Python Software Foundation.\n    <br />\n    This page\
-    \ is licensed under the Python Software Foundation License Version 2.\n    <br\
-    \ />\n    Examples, recipes, and other code in the documentation are additionally\
-    \ licensed under the Zero Clause BSD License.\n    <br />\n    See <a href=\"\
-    /license.html\">History and License</a> for more information.<br />\n    <br />\n\
-    \n    The Python Software Foundation is a non-profit corporation.\n<a href=\"\
-    https://www.python.org/psf/donations/\">Please donate.</a>\n<br />\n    <br />\n\
-    \n    Last updated on Apr 23, 2023.\n    <a href=\"/bugs.html\">Found a bug</a>?\n\
-    \    <br />\n\n    Created using <a href=\"https://www.sphinx-doc.org/\">Sphinx</a>\
-    \ 4.5.0.\n    </div>\n\n    <script type=\"text/javascript\" src=\"_static/switchers.js\"\
-    ></script>\n  </body>\n</html>\n> exit"
-  time: "Sun, 23 Apr 2023 19:25:44 UTC"
+  message: Congratulations!
+  time: "Sun, 23 Apr 2023 21:57:51 UTC"
 record: 5
